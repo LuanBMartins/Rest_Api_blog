@@ -1,19 +1,19 @@
-const schema = require('../infra/schemas/postsSchema')
-const Database = require('./../infra/database')
+const {Post} = require('../infra/Models/postsSchema')
 
 
-// configurando conexão
-async function connect() {
-    const con = await Database.connect()
-    const model = await Database.defineModel(con, schema)
-    return new Database(con, model)
+exports.getPost = () => {
+    return Post.findAll()
 }
 
-// conexão realizada
-connect().then(con => {
-    const db = con
-    
-    exports.getPosts = () => {
-        return db.read()
-    }
-})
+exports.savePost = async (post) => {
+    const {dataValues} = await Post.create(post)
+    return dataValues 
+}
+
+exports.updatePost = (id, post) => {
+    return Post.update(post, {where: {id: id}})
+}
+
+exports.deletePost = (id) => {
+    return Post.destroy({where: {id: id}})
+}

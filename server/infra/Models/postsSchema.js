@@ -1,4 +1,5 @@
 const sequelize = require('sequelize')
+const con = require('../database')
 
 const schema = {
     name: 'post',
@@ -21,5 +22,12 @@ const schema = {
     }
 }
 
+const Post = con.define(
+    schema.name,
+    schema.schema,
+    schema.options
+);
 
-module.exports = schema
+Post.sync()
+
+module.exports = {Post}
