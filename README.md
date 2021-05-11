@@ -1,6 +1,6 @@
 #### Rest_Api_blog
 ### Estudo sobre APIs
-### API b&aacute;sica respons&aacute;vel pelo gerenciamento dos posts de um blog
+### API b&aacute;sica respons&aacute;vel pelo gerenciamento dos posts de um blog.
 ## Tecnologias utilizadas
 
 <ul>
@@ -11,16 +11,16 @@
 </ul>
 
 ## Instruçõees para executar o projeto
-#### 1) Clone o projeto em uma pasta
+#### 1) Clone o projeto em uma pasta.
 `git clone https://github.com/LuanBMartins/Rest_Api_blog.git`
-#### 2) Entre na pasta raiz do projeto
+#### 2) Entre na pasta raiz do projeto.
 `cd Rest_Api_blog`
-#### 3) Instale as depend&ecirc;ncias
+#### 3) Instale as depend&ecirc;ncias.
 `npm install`
 
 
 <h4>Para o banco utilize <a href="https://www.postgresql.org/">Postgres</a></h4>
-Utilize o seguinte script em sua base de dados criada
+Utilize o seguinte script em sua base de dados criada:
 
 
 ```
@@ -39,8 +39,8 @@ DB_USER=SeuUsuárioDoBanco
 DB_PASS=SuaSenha
 ```
 ## Execução
-O projeto está pronto para ser executado, basta utilizar `npm start` para subir o servidor e verificar as rotas<br>
-Para rodas os testes, basta com estar com o servidor online e utilizar `npm test`
+O projeto está pronto para ser executado, basta realizar `npm start`.<br>
+Para rodar os testes, basta estar com o servidor online e utilizar `npm test`.
 
 ## Rotas
 <ul>
