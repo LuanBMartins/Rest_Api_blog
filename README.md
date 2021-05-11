@@ -10,14 +10,14 @@
 </ul>
 <h2><em><span style="color: #3366ff;">Instru&ccedil;&otilde;es para executar o projeto</span></em></h2>
 <h4>1) Clone o projeto em uma pasta</h4>
-<p>`git clone https://github.com/LuanBMartins/Rest_Api_blog.git`</p>
+`git clone https://github.com/LuanBMartins/Rest_Api_blog.git`
 <h4>2) Entre na pasta raiz do projeto</h4>
-<p>`cd Rest_Api_blog`</p>
+`cd Rest_Api_blog`
 <h4>3) Instale as depend&ecirc;ncias</h4>
-<p>`npm install`</p>
+`npm install`
 <h4>Para o banco utilize <a href="https://www.postgresql.org/">Postgres</a></h4>
 <p>Utilize o seguinte script em sua base de dados criada</p>
-<p>
+
 ```
 create schema blog;
 create table blog.post (
@@ -27,16 +27,22 @@ create table blog.post (
     date timestamp default now()
 ); 
 ```
+Termine de configurar criando um arquivo .env na raiz do projeto e edite com as seguintes informações:  
+```
+DATABASE=BaseCriada
+DB_USER=SeuUsuárioDoBanco
+DB_PASS=SuaSenha
+```
 <h2><em><span style="color: #3366ff;">Execução</span></em></h2>
-O projeto está pronto para executado, basta utilizar `npm start` para subir o servidor<br>
+O projeto está pronto para ser executado, basta utilizar `npm start` para subir o servidor e verificar as rotas<br>
 Para rodas os testes, basta com estar com o servidor online e utilizar `npm test`
 
 </p>
 <h2><em><span style="color: #3366ff;">Rotas</span></em></h2>
 <ul>
-<li>[GET] /posts</li>
-<li>[GET] /posts/:id</li>
-<li>[POST] /posts</li>
-<li>[PUT] /posts/:id</li>
-<li>[DELETE] /posts/:id</li>
+<li>[GET] http://localhost:5000/posts</li>
+<li>[GET] http://localhost:5000/posts/:id</li>
+<li>[POST] http://localhost:5000/posts</li>
+<li>[PUT] http://localhost:5000/posts/:id</li>
+<li>[DELETE] http://localhost:5000/posts/:id</li>
 </ul>
