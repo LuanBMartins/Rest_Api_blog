@@ -8,27 +8,51 @@ const generate = function () {
     return crypto.randomBytes(20).toString('hex')
 }
 
-let post1 = {}
-let post2 = {}
-let post3 = {}
+const request = function (url, method, data) {
+    return axios({ url, method, data})
+}
+
 
 describe('Camada de testes', function() {
+    let post1, post2, post3
 
     this.beforeAll(async function (){
         post1 = await postService.savePost({title: generate(), content: generate()})
         post2 = await postService.savePost({title: generate(), content: generate()})
         post3 = await postService.savePost({title: generate(), content: generate()})
     })
-    it('get Route', async function(){
-        
-        const res = await axios({
-            url: 'http://localhost:5000/posts',
-            method: 'get'
-        })
-        const posts = res.data
 
-        assert.ok(3 === posts.length)
+    it('Should get a post', async function(){
+        const res = await request('http://localhost:5000/posts', 'get')
+        const post = res.data
+        assert.ok(3 === post.length)
     })
+
+    it('Should save a post', async function(){
+        const data = {title: generate(), content: generate()}
+        const res = await request('http://localhost:5000/posts', 'post', data)
+        const post = res.data
+        assert.strictEqual(post.title, data.title)
+        assert.strictEqual(post.content, data.content)
+        await postService.deletePost(post.id)
+    })
+
+    it('Should update a post', async function(){
+        post1.title = generate()
+        post1.content = generate()
+        await request(`http://localhost:5000/posts/${post1.id}`, 'put', post1)
+        const updatePost = await postService.getPost(post1.id)
+        assert.strictEqual(updatePost.title, post1.title)
+        assert.strictEqual(updatePost.content, post1.content)
+    })
+
+    it('Should delete a post', async function(){
+        const post = await postService.savePost({title: generate(), content: generate()})
+        await request(`http://localhost:5000/posts/${post.id}`, 'delete')
+        const posts = await postService.getPost(post.id)
+        assert.ok(posts === null)
+    })
+
     this.afterAll(async function(){
         await postService.deletePost(post1.id)
         await postService.deletePost(post2.id)

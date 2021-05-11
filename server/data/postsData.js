@@ -1,8 +1,11 @@
 const {Post} = require('../infra/Models/postsSchema')
 
-
-exports.getPost = () => {
+exports.getPostAll = () => {
     return Post.findAll()
+}
+
+exports.getPost = (id) => {
+    return Post.findOne({where: {id: id}, raw: true})
 }
 
 exports.savePost = async (post) => {

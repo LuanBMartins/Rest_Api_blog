@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const postsRoute = require('./route/postsRoutes')
 
+
+app.use(express.json())
 app.use('/', postsRoute)
 
 
