@@ -4,28 +4,36 @@ const postsService = require('../service/postsService')
 
 route.get('/posts', async function(req, res) {
     const posts = await postsService.getPostAll()
-    res.send(posts)
+    res.json(posts)
 })
+
 route.get('/posts/:id', async function(req, res) {
     const id = req.params.id
     const posts = await postsService.getPost(id)
-    res.send(posts)
+    res.json(posts)
 })
+
 route.post('/posts', async function(req, res) {
     const post = req.body
     const result = await postsService.savePost(post)
-    res.send(result)
+    res.status(201).json(result)
 })
+
 route.put('/posts/:id', async function(req, res) {
     const id = req.params.id
     const post = req.body
-    await postsService.updatePost(id, post)
-    res.end()
+    try{
+        await postsService.updatePost(id, post)
+        res.status(204).end()
+    }catch(error){
+        res.status(404).end()
+    }
 })
+
 route.delete('/posts/:id', async function(req, res) {
     const id = req.params.id
     await postsService.deletePost(id)
-    res.end()
+    res.status(204).end()
 })
 
 
